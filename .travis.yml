@@ -8,3 +8,4 @@ script:
     - "yarn run lint"
     - "yarn run build"
     - "yarn run test"
+    - "yarn run coveralls"
