@@ -1,3 +1,4 @@
+import { expect } from "chai";
 import { Reader } from "./Reader";
 
 // Prevent log output
@@ -37,47 +38,47 @@ describe("MT940 Reader Tests", function () {
     ///////////////////////////////////////////////////////////////////////
     it("should get one entry for simple text", function () {
         const target = new Reader("ABNANL2A\n940");
-        expect(target._rawEntries.length).toBe(1);
+        expect(target._rawEntries.length).to.equal(1);
     });
 
     it("should get two lines for simple text", function () {
         const target = new Reader("ABNANL2A\n940");
-        expect(target._rawEntries[0].length).toBe(2);
+        expect(target._rawEntries[0].length).to.equal(2);
     });
 
     it("should get two entries for hyphen at char one", function () {
         const target = new Reader("ABNANL2A\n940\n-\nABNANL2A\n940");
-        expect(target._rawEntries.length).toBe(2);
+        expect(target._rawEntries.length).to.equal(2);
     });
 
     it("should get two lines for both entries for hyphen at char one", function () {
         const target = new Reader("ABNANL2A\n940\n-\nABNANL2A\n940");
-        expect(target._rawEntries[0].length).toBe(2);
-        expect(target._rawEntries[1].length).toBe(2);
+        expect(target._rawEntries[0].length).to.equal(2);
+        expect(target._rawEntries[1].length).to.equal(2);
     });
 
     it("should create an account entry", function () {
         const target = new Reader(":20:ABN Amro\n:25:12345");
         expect(target.accounts["12345"])
-            .toBeDefined();
+            .to.be.ok;
     });
 
     it("should not create an account entry if no ID", function () {
         const target = new Reader(":20:ABN Amro\n:25:");
-        expect(target.accounts["12345"]).toBeUndefined();
+        expect(target.accounts["12345"]).to.be.undefined;
     });
 
     it("should correctly extract all statements", function () {
         const file = REAL_ENTRY.join("\n");
         const target = new Reader(file);
         expect(target.accounts["420123123"].statements.length)
-            .toBe(4);
+            .to.equal(4);
     });
 
     it("should correctly extract statement 1", function () {
         const file = REAL_ENTRY.join("\n");
         const target = new Reader(file);
         expect(target.accounts["420123123"].statements.length)
-            .toBe(4);
+            .to.equal(4);
     });
 });

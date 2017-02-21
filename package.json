@@ -15,20 +15,22 @@
     "yargs": "^6.6.0"
   },
   "devDependencies": {
+    "@types/chai": "^3.4.35",
     "@types/chalk": "^0.4.31",
-    "@types/jasmine": "^2.5.2",
+    "@types/mocha": "^2.2.39",
     "@types/winston": "^2.2.0",
     "@types/yargs": "^6.6.0",
+    "chai": "^3.5.0",
     "coveralls": "^2.11.16",
     "istanbul": "^0.4.5",
-    "jasmine": "^2.5.3",
+    "mocha": "^3.2.0",
     "remap-istanbul": "^0.9.1",
     "rimraf": "^2.6.0",
     "tslint": "^4.4.2",
     "typescript": "^2.2.0"
   },
   "scripts": {
-    "test": "jasmine",
+    "test": "mocha --opts .mocha.opts",
     "build": "tsc",
     "lint": "tslint --project tsconfig.json",
     "clean": "rimraf dist coverage",
