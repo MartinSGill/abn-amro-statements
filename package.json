@@ -7,7 +7,7 @@
   "main": "dist/index.js",
   "bin": "dist/main.js",
   "directories": {
-    "test": "tests"
+    "test": "spec"
   },
   "dependencies": {
     "chalk": "^1.1.3",
