@@ -22,6 +22,7 @@
     "coveralls": "^2.11.16",
     "istanbul": "^0.4.5",
     "jasmine": "^2.5.3",
+    "remap-istanbul": "^0.9.1",
     "rimraf": "^2.6.0",
     "tslint": "^4.4.2",
     "typescript": "^2.2.0"
@@ -30,9 +31,10 @@
     "test": "jasmine",
     "build": "tsc",
     "lint": "tslint --project tsconfig.json",
-    "clean": "rimraf dist",
-    "cover": "istanbul cover ./node_modules/jasmine/bin/jasmine.js",
-    "coveralls": "istanbul cover ./node_modules/jasmine/bin/jasmine.js --captureExceptions && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage"
+    "clean": "rimraf dist coverage",
+    "cover": "istanbul cover ./node_modules/jasmine/bin/jasmine.js && remap-istanbul -i coverage/coverage.json -o coverage/remap-report -t html",
+    "cover-lcov": "istanbul cover ./node_modules/jasmine/bin/jasmine.js --captureExceptions && remap-istanbul -i coverage/coverage.json -o coverage/remap-lcov.info -t lcovonly",
+    "coveralls": "yarn run cover-lcov && cat ./coverage/remap-lcov/remap-lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage"
   },
   "files": [
     "dist/",
