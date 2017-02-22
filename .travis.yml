@@ -5,7 +5,5 @@ sudo: false
 node_js:
     - "7"
 script:
-    - "yarn run lint"
-    - "yarn run build"
-    - "yarn run test"
+    - "yarn run fullbuild"
     - "yarn run coveralls"

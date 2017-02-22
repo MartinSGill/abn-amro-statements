@@ -22,24 +22,34 @@
     "@types/yargs": "^6.6.0",
     "chai": "^3.5.0",
     "coveralls": "^2.11.16",
-    "istanbul": "^0.4.5",
     "mocha": "^3.2.0",
-    "remap-istanbul": "^0.9.1",
+    "nyc": "^10.1.2",
     "rimraf": "^2.6.0",
     "tslint": "^4.4.2",
     "typescript": "^2.2.0"
   },
   "scripts": {
     "test": "mocha --opts .mocha.opts",
+    "fullbuild": "yarn run clean && yarn lint && yarn tsc && yarn test",
     "build": "tsc",
     "lint": "tslint --project tsconfig.json",
-    "clean": "rimraf dist coverage",
-    "cover": "istanbul cover ./node_modules/jasmine/bin/jasmine.js && remap-istanbul -i coverage/coverage.json -o coverage/remap-report -t html",
-    "cover-lcov": "istanbul cover ./node_modules/jasmine/bin/jasmine.js --captureExceptions && remap-istanbul -i coverage/coverage.json -o coverage/remap-lcov.info -t lcovonly",
-    "coveralls": "yarn run cover-lcov && cat ./coverage/remap-lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage"
+    "clean": "rimraf dist coverage .nyc_output",
+    "cover": "nyc yarn test",
+    "coveralls": "yarn run cover && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js"
   },
   "files": [
     "dist/",
     "src/"
-  ]
+  ],
+  "nyc": {
+    "include": [
+      "dist/**/*.js"
+    ],
+    "sourceMap": true,
+    "reporter": [
+      "lcov",
+      "text-summary",
+      "html"
+    ]
+  }
 }
