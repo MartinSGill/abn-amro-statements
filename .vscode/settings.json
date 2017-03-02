@@ -4,5 +4,6 @@
         "**/*.js": { "when": "$(basename).ts"},
         "**/*.js.map": { "when": "$(basename).ts"}
     },
-    "vsicons.presets.angular": false
+    "vsicons.presets.angular": false,
+    "editor.minimap.enabled": true
 }

@@ -102,7 +102,7 @@ export class Util {
 
         const items = memo.split("/");
         for (let i = 1; i < items.length; i += 2) {
-            result[items[i]] = items[i + 11];
+            result[items[i]] = items[i + 1];
         }
 
         if (result.hasOwnProperty("NAME")) {
